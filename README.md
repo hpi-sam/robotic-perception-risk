@@ -2,6 +2,8 @@
 
 Reproduction package for the paper *"Perception Hazard for Path Planning in Autonomous Rover Navigation"*.
 
+📎 **[Paper Appendix (PDF)](results/pdfs/Appendix.pdf)** — supplementary material for *Perception Entropy for Path Planning in Autonomous Rover Navigation*.
+
 This pipeline implements a closed-loop **perception–planning–adaptation** architecture that compares Q-Learning (off-policy) and SARSA (on-policy) under a fog-of-war navigation scenario. The agent learns to navigate a real RGB-D rover sequence (Intel RealSense D435i) while actively triggering directional scans whenever it approaches unknown terrain. A directional **perception-hazard tensor** $\xi$ shapes the reward function so that the policy learns to balance progress toward the goal against the risk of entering poorly-observed or hazardous regions.
 
 > **Repository name:** The GitHub repository should be renamed to match the paper title, e.g. `perception-hazard-for-path-planning-in-autonomous-rover-navigation`. Renaming is done in GitHub → Settings → Repository name. The local clone URL will need to be updated accordingly after renaming.
@@ -506,6 +508,7 @@ Pre-built result PDFs are stored in [`results/pdfs/`](results/pdfs/) and committ
 
 | File | Contents |
 |---|---|
+| [`results/pdfs/Appendix.pdf`](results/pdfs/Appendix.pdf) | **Paper appendix** — supplementary material for *Perception Entropy for Path Planning in Autonomous Rover Navigation* (extended derivations, full statistical tables, additional figures) |
 | [`results/pdfs/results.pdf`](results/pdfs/results.pdf) | Full report: statistical tables, CSV previews around each convergence point, all 18 figures |
 | [`results/pdfs/results_v2.pdf`](results/pdfs/results_v2.pdf) | Compact report: statistical tables + 6 key publication figures |
 | [`results/pdfs/Box_Plot.pdf`](results/pdfs/Box_Plot.pdf) | Safety margin distributions per scan depth (Q-Learning vs SARSA) |
@@ -516,6 +519,8 @@ Pre-built result PDFs are stored in [`results/pdfs/`](results/pdfs/) and committ
 | [`results/pdfs/Fig_rq1_2_SARSA.pdf`](results/pdfs/Fig_rq1_2_SARSA.pdf) | RQ2 — SARSA reward vs Perception Entropy (Spearman ρ) |
 
 Statistical test outputs (Mann-Whitney U, Spearman correlation with Bonferroni correction) are in [`src/hypothesis_test_results.md`](src/hypothesis_test_results.md).
+
+The companion **paper appendix** is at [`results/pdfs/Appendix.pdf`](results/pdfs/Appendix.pdf).
 
 ---
 
