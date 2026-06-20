@@ -1,6 +1,6 @@
 # Perception Risk for Path Planning in Autonomous Rover Navigation
 
-Reproduction package for the paper *"Perception Hazard for Path Planning in Autonomous Rover Navigation"*.
+Reproduction package for the paper *"Perception Risk for Path Planning in Autonomous Rover Navigation"*.
 
 This pipeline implements a closed-loop **perception–planning–adaptation** architecture that compares Q-Learning (off-policy) and SARSA (on-policy) under a fog-of-war navigation scenario. The agent learns to navigate a real RGB-D rover sequence (Intel RealSense D435i) while actively triggering directional scans whenever it approaches unknown terrain. A directional **perception-hazard tensor** $\xi$ shapes the reward function so that the policy learns to balance progress toward the goal against the risk of entering poorly-observed or hazardous regions.
 
