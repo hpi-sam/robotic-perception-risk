@@ -6,7 +6,7 @@ Reproduction package for the paper *"Perception Risk for Path Planning in Autono
 
 This pipeline implements a closed-loop **perception–planning–adaptation** architecture that compares Q-Learning (off-policy) and SARSA (on-policy) under a fog-of-war navigation scenario. The agent learns to navigate a real RGB-D rover sequence (Intel RealSense D435i) while actively triggering directional scans whenever it approaches unknown terrain. A directional **perception-hazard tensor** $\xi$ shapes the reward function so that the policy learns to balance progress toward the goal against the risk of entering poorly-observed or hazardous regions.
 
-> **Repository name:** The GitHub repository should be renamed to match the paper title, e.g. `perception-hazard-for-path-planning-in-autonomous-rover-navigation`. Renaming is done in GitHub → Settings → Repository name. The local clone URL will need to be updated accordingly after renaming.
+> **Repository name:** The GitHub repository should be renamed to match the paper title, e.g. `robotic-perception-risk`. Renaming is done in GitHub → Settings → Repository name. The local clone URL will need to be updated accordingly after renaming.
 
 ---
 
