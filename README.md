@@ -1,6 +1,6 @@
-# Perception Hazard for Path Planning in Autonomous Rover Navigation
+# Perception Risk for Path Planning in Autonomous Rover Navigation
 
-Reproduction package for the paper *"Perception Hazard for Path Planning in Autonomous Rover Navigation"*.
+Reproduction package for the paper *"Perception Risk for Path Planning in Autonomous Rover Navigation"*.
 
 📎 **[Paper Appendix (PDF)](results/pdfs/Appendix.pdf)** — supplementary material for *Perception Entropy for Path Planning in Autonomous Rover Navigation*.
 
