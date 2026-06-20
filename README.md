@@ -1,4 +1,4 @@
-# Perception Hazard for Path Planning in Autonomous Rover Navigation
+# Perception Risk for Path Planning in Autonomous Rover Navigation
 
 Reproduction package for the paper *"Perception Hazard for Path Planning in Autonomous Rover Navigation"*.
 
