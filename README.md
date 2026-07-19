@@ -90,7 +90,7 @@ All source code is under `src/`, and all generated artefacts are under `results/
 │   │
 │   ├── grid_mapper.py                          # Depth image → occupancy grid projection
 │   ├── confidence_mapper.py                    # Per-cell confidence accumulation
-│   ├── unbounded_metrics.py                    # Perception-hazard tensor ξ and coverage V_φ
+│   ├── unbounded_metrics.py                    # Perception-risk score ξ_perc and coverage V_φ
 │   ├── view_cones.py                           # 8-directional view cone utilities
 │   ├── adaptive_perception.py                  # Adaptive perception model (unbounded-risk variant)
 │   │
@@ -101,7 +101,7 @@ All source code is under `src/`, and all generated artefacts are under `results/
 │   ├── hyperparameter_sweep.py                 # Grid search over α, γ, θ
 │   ├── compare_safety.py                       # Q-Learning safety margin comparison
 │   ├── compare_safety_sarsa.py                 # SARSA safety margin comparison
-│   ├── hypothesis_tests.py                     # Hypothesis tests (Mann–Whitney U, Spearman)
+│   ├── hypothesis_tests.py                     # Mann–Whitney U tests on safety margins (prints to stdout)
 │   │
 │   ├── plot_results.py                         # Per-episode metric visualisations
 │   ├── plot_safety_comparison.py               # Safety margin box plots
@@ -302,14 +302,14 @@ Active perception decides when to trigger scans and calculates perception quanti
   - Directional distances $d$ to the nearest obstacle/unknown.  
   - Invisible-cell ratios $V_\phi$.  
   - Hazard multipliers $\zeta$.  
-  - Directional hazard tensor $\xi$ for all free cells and directions. [file:1]
+  - Directional perception-risk tensor $\xi_{\mathrm{perc}}$ for all free cells and directions. [file:1]
 
 ### 3. RL training loop
 
 `rl_trainer.py` implements `train_online()`:
 
 1. Agent selects $a_t$ via $\epsilon$-greedy on the current Q-table. [file:1]  
-2. Scan condition checked; if triggered, map and hazard tensor are updated. [file:1]  
+2. Scan condition checked; if triggered, map and perception-risk tensor are updated. [file:1]  
 3. Environment executes the move, computes $R_t$, handles collisions and goal termination. [file:1]  
 4. Q-table updated for $(s_t, a_t)$ using Q-Learning or SARSA. [file:1]  
 5. Episode continues until goal reached or `MAX_RL_STEPS` exceeded. [file:1]
@@ -428,11 +428,13 @@ cd src
 python hypothesis_tests.py
 ```
 
-Writes test outputs and interpretation to:
+Prints Mann–Whitney U results (consecutive scan-depth pairs, both algorithms) to stdout. A committed summary and interpretation are in:
 
 ```text
 src/hypothesis_test_results.md
 ```
+
+> Note: `hypothesis_tests.py` does **not** write this file — it is a hand-maintained summary. Spearman correlations are produced by `generate_paper_figures.py`; Welch's $t$-tests by `post_convergence_ttest.py`.
 
 ### Hyperparameter grid search
 
@@ -499,12 +501,12 @@ Parameters in `src/main.py`: [file:1]
 | `RL_EPS_START`          | $\varepsilon_0$       | 0.99    | Initial exploration rate |
 | `RL_EPS_END`            | $\varepsilon_{\min}$  | 0.10    | Terminal exploration rate |
 | `RL_EPS_DECAY`          | —                       | `"auto"` | Decay so $\varepsilon$ reaches $\varepsilon_{\min}$ at episode $N$ |
-| `REWARD_GOAL`           | $\Omega_t$             | 1000.0  | Goal reward |
+| `REWARD_GOAL`           | —                       | 1000.0  | Goal reward ($+1000$; terminates the episode) |
 | `COST_CARDINAL`         | $C_t$                  | 1.0     | Movement cost (cardinal) |
 | `COST_DIAGONAL`         | $C_t$                  | 1.0     | Movement cost (diagonal) |
 | `PROGRESS_REWARD_SCALE` | $\omega$               | 4       | Progress reward scale |
-| `VAR_DIST`              | $d_{\text{var}}$       | 1.0     | Distance softening constant (implementation detail) |
-| `THETA_DEGREE`          | $\theta$               | 60.0    | Cone angle for $V_\varphi$ (degrees) |
+| `VAR_DIST`              | —                       | 1.0     | Distance-softening constant; implements $\frac{1}{d+1}$ as `VAR_DIST/(d+VAR_DIST)` (code-only) |
+| `THETA_DEGREE`          | $\theta$               | 60.0    | Cone angle for $V_\phi$ (degrees) |
 | `HAZARD_OBSTACLE`       | $\zeta_{\mathrm{obs}}$ | 10.0    | Hazard multiplier for obstacles |
 | `HAZARD_UNKNOWN`        | $\zeta_{\mathrm{unk}}$ | 1.0     | Hazard multiplier for unknown cells |
 | `SCAN_DEPTH_THRESHOLD`  | $\tau_{\text{scan}}$   | 5       | Scan trigger distance (cells) |
