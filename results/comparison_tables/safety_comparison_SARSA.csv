@@ -1,7 +1,6 @@
-Condition,PerEpisode safety (last100 mean±std),FinalPath safety,MannWhitney vs oracle,Cliff d vs oracle
+Condition,PerEpisode clearance (last100 mean±std),FinalPath clearance,Welch t p vs oracle,Cohen d vs oracle
 Oracle_baseline,13.23 ± 0.61,11.97,—,—
-RiskAware_Scan5,11.82 ± 0.56,11.91,0.0000 (oracle safer),-0.91
-RiskAware_Scan10,13.62 ± 0.70,11.07,0.0000 (risk safer),0.35
-RiskAware_Scan15,13.49 ± 0.63,11.83,0.0021 (risk safer),0.25
-RiskAware_Scan20,13.48 ± 0.60,11.06,0.0019 (risk safer),0.25
-RiskAware_Scan25,13.86 ± 0.65,10.82,0.0000 (risk safer),0.54
+RiskAware_Scan5,11.82 ± 0.56,11.91,0.0000 (oracle safer),-2.41
+RiskAware_Scan10,13.62 ± 0.70,11.07,0.0000 (risk safer),0.6
+RiskAware_Scan15,13.49 ± 0.63,11.83,0.0035 (risk safer),0.42
+RiskAware_Scan20,13.48 ± 0.60,11.06,0.0030 (risk safer),0.43
