@@ -1,0 +1,7 @@
+Metric,Oracle_baseline,RiskAware_Scan5,RiskAware_Scan10,RiskAware_Scan15,RiskAware_Scan20,RiskAware_Scan25
+Convergence episode,367.0,381.0,394.0,366.0,374.0,398.0
+Final path length,133.0,178.0,140.0,175.0,131.0,131.0
+Final path safety,12.36,11.1,11.64,10.79,12.43,12.3
+Success% (last200),66.0,60.0,50.0,66.0,62.0,50.0
+Total scans,0.0,377.0,440.0,387.0,508.0,1552.0
+Exploration entropy,14.43,14.36,14.53,14.32,14.49,14.56
