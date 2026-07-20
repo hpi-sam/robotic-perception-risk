@@ -1,7 +1,0 @@
-Metric,Oracle_baseline,RiskAware_Scan5,RiskAware_Scan10,RiskAware_Scan15,RiskAware_Scan20,RiskAware_Scan25,FogNoRisk_Scan5,FogNoRisk_Scan10,FogNoRisk_Scan15,FogNoRisk_Scan20,FogNoRisk_Scan25
-Convergence episode,382.0,380.0,355.0,372.0,388.0,360.0,368.0,394.0,366.0,351.0,347.0
-Final path length,176.0,168.0,177.0,170.0,171.0,177.0,173.0,146.0,134.0,129.0,159.0
-Final path safety,11.97,11.91,11.07,11.83,11.06,10.82,11.13,10.68,11.82,13.21,10.33
-Success% (last100),100.0,100.0,100.0,100.0,100.0,100.0,100.0,99.0,100.0,100.0,100.0
-Total scans,0.0,431.0,401.0,417.0,441.0,673.0,376.0,453.0,454.0,526.0,671.0
-Exploration entropy,14.55,14.51,14.44,14.5,14.54,14.46,14.46,14.62,14.46,14.37,14.43

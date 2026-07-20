@@ -1,4 +1,4 @@
-Metric,Oracle_baseline,RiskAware_Scan5,RiskAware_Scan10,RiskAware_Scan15,RiskAware_Scan20
+Metric,Perfect perception,RiskAware_Scan5 (Baseline),RiskAware_Scan10,RiskAware_Scan15,RiskAware_Scan20
 1st Episode Success,367.0,381.0,394.0,366.0,374.0
 Conv. Ep. (10%),391.0,381.0,412.0,427.0,451.0
 Conv. Ep. (5%),409.0,460.0,438.0,457.0,451.0
