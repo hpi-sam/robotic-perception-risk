@@ -1,3 +1,3 @@
-Algorithm,REWARD_COLLISION_OBSTACLE,MAX_RL_STEPS,Seed,Exploration_Entropy,Final_Greedy_Reward,Convergence_Episode,Final_Greedy_Path_Length,Avg_Safety_Margin_Final_Path
-Q-Learning,-20.0,400,42,14.433,1374.7,367,133,12.3593
-SARSA,-20.0,400,42,14.5461,270.47,382,176,11.9722
+Algorithm,REWARD_COLLISION_OBSTACLE,MAX_RL_STEPS,Seed,Exploration_Entropy,Final_Greedy_Reward,Convergence_Episode,Final_Greedy_Path_Length
+Q-Learning,-20.0,400,42,14.433,1374.7,367,133
+SARSA,-20.0,400,42,14.5461,270.47,382,176

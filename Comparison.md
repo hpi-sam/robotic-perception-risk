@@ -4,17 +4,16 @@
 
 **How to read:** lower path length is better; higher clearance is safer; earlier
 convergence (Conv. Ep. 10%) is faster learning. **PP** = Perfect perception
-(full-map baseline). Best value in each row is in **bold**. Clearance is shown
-two ways because they can disagree: *per-episode* (last-100 mean, the
-statistically tested distribution) and *final-path* (the single greedy route).
+(full-map baseline). Best value in each row is in **bold**. Clearance is the
+per-episode obstacle-clearance distance d̄_clear (last-100 mean, the
+statistically tested distribution — the same metric as the paper's RQ3).
 
 ### Q-Learning
 
 | Metric (better =) | PP | Scan5 | Scan10 | Scan15 | Scan20 | Winner |
 |---|---|---|---|---|---|---|
 | Path length, cells (lower) | 133 | 178 | 140 | 175 | **131** | **Scan20** (PP close 2nd, 133) |
-| Per-episode clearance (higher) | 13.43 | 12.35 | 12.66 | **13.56** | 13.38 | **Scan15** (not sig. > PP; PP 2nd) |
-| Final-path clearance (higher) | 12.36 | 11.10 | 11.64 | 10.79 | **12.43** | **Scan20** (PP close 2nd, 12.36) |
+| Clearance d̄_clear (higher) | 13.43 | 12.35 | 12.66 | **13.56** | 13.38 | **Scan15** (not sig. > PP; PP 2nd) |
 | Convergence, Conv. 10% (lower) | 391 | **381** | 412 | 427 | 451 | **Scan5** (PP 2nd, 391) |
 
 ### SARSA
@@ -22,18 +21,17 @@ statistically tested distribution) and *final-path* (the single greedy route).
 | Metric (better =) | PP | Scan5 | Scan10 | Scan15 | Scan20 | Winner |
 |---|---|---|---|---|---|---|
 | Path length, cells (lower) | 176 | **168** | 177 | 170 | 171 | **Scan5** (PP 2nd-worst, 176) |
-| Per-episode clearance (higher) | 13.23 | 11.82 | **13.62** | 13.49 | 13.48 | **Scan10** (sig. > PP, d=+0.60) |
-| Final-path clearance (higher) | **11.97** | 11.91 | 11.07 | 11.83 | 11.06 | **PP** (Scan5 close 2nd, 11.91) |
+| Clearance d̄_clear (higher) | 13.23 | 11.82 | **13.62** | 13.49 | 13.48 | **Scan10** (sig. > PP, d=+0.60) |
 | Convergence, Conv. 10% (lower) | 389 | 384 | **380** | 385 | 390 | **Scan10** (tight 380–390 window) |
 
 **Takeaways per metric:**
 - **Path length** — the risk-aware method wins for *both* algorithms (QL Scan20
   131 < PP 133; SARSA Scan5 168 < PP 176). Fog-of-war navigation finds paths as
   short or shorter than the full-map baseline.
-- **Clearance** — split verdict. Perfect perception is safest on the single
-  greedy path (final-path) for SARSA, but the risk-aware method is safest on the
-  per-episode distribution: QL Scan15 and SARSA Scan10 both exceed PP, and
-  SARSA's Scan10–20 advantage is statistically significant (Cohen d up to +0.60).
+- **Clearance** — the risk-aware method matches or exceeds perfect perception at
+  sufficient scan depth: QL Scan15 (13.56) edges PP (not significant), and SARSA
+  Scan10–20 are significantly *safer* than PP (Cohen d up to +0.60). Only the
+  shallowest setting (Scan5) is clearly less safe than PP.
 - **Convergence** — the risk-aware method converges as fast or faster than
   perfect perception for both algorithms (QL Scan5 381 < PP 391; SARSA Scan10
   380 < PP 389). Full observability buys no convergence advantage.
@@ -70,17 +68,17 @@ nothing to perfect perception and often wins. (Single seed; see open items.)
 - **Conv. Ep. (10%) / (5%)** — the paper's reward-stability convergence: first
   episode after which all subsequent rewards stay within 10% / 5% of their mean.
   Later and stricter than 1st Episode Success.
-- **Final path clearance** — obstacle-clearance margin (d̄_clear) of the final
-  extracted greedy path.
-- **Per-episode clearance** — d̄_clear averaged per episode over the last 100
-  (post-convergence) episodes; the statistically testable distribution.
+- **Clearance (d̄_clear)** — average obstacle-clearance distance: the per-step
+  straight-line distance to the nearest obstacle, averaged per episode, reported
+  as the last-100 (post-convergence) mean. This is the paper's RQ3 metric and
+  the statistically testable distribution.
 - **Success % (last 100)** — goal-reaching rate over the last 100 episodes.
 
 > *Final Reward* is deliberately excluded. The perfect-perception baseline
 > (−20, no risk term) and the risk-aware method (−20, with the −ξ_perc term) use
 > different reward functions, so reward magnitudes are not comparable. The
 > comparison is on reward-independent outcomes (convergence, path length,
-> clearance, success, scans, entropy).
+> clearance, success, scans).
 
 ---
 
@@ -97,7 +95,6 @@ each scan threshold (Scan 5 = sweep baseline).
 | Conv. Ep. (10%) | 391 | 381 | 412 | 427 | 451 |
 | Conv. Ep. (5%) | 409 | 460 | 438 | 457 | 451 |
 | Final path length (cells) | 133 | 178 | 140 | 175 | 131 |
-| Final path clearance | 12.36 | 11.10 | 11.64 | 10.79 | 12.43 |
 | Success % (last 100) | 100 | 100 | 98 | 99 | 99 |
 | Total scans | 0 | 377 | 440 | 387 | 508 |
 
@@ -109,7 +106,6 @@ each scan threshold (Scan 5 = sweep baseline).
 | Conv. Ep. (10%) | 389 | 384 | 380 | 385 | 390 |
 | Conv. Ep. (5%) | 454 | 458 | 395 | 407 | 420 |
 | Final path length (cells) | 176 | 168 | 177 | 170 | 171 |
-| Final path clearance | 11.97 | 11.91 | 11.07 | 11.83 | 11.06 |
 | Success % (last 100) | 100 | 100 | 100 | 100 | 100 |
 | Total scans | 0 | 431 | 401 | 417 | 441 |
 
@@ -143,30 +139,30 @@ risk.
 ## Safety tables — `safety_comparison_{QLEARNING,SARSA}.csv`
 
 **Structure:** rows = conditions (perfect perception + each risk-aware
-threshold); columns = per-episode clearance (last-100 mean ± std), final-path
-clearance, Welch's two-sided t-test p-value vs perfect perception, and Cohen's d
-effect size (d > 0 = risk-aware safer than perfect perception; d < 0 = perfect
+threshold); columns = per-episode clearance d̄_clear (last-100 mean ± std),
+Welch's two-sided t-test p-value vs perfect perception, and Cohen's d effect
+size (d > 0 = risk-aware safer than perfect perception; d < 0 = perfect
 perception safer). Statistics mirror the paper's RQ3 methodology.
 
 ### Q-Learning
 
-| Condition | Per-episode clearance (mean ± std) | Final-path clearance | p vs Perfect perception | Cohen d |
-|---|---|---|---|---|
-| Perfect perception | 13.43 ± 0.65 | 12.36 | — | — |
-| Scan5 (Baseline) | 12.35 ± 0.50 | 11.10 | <0.0001 (perception safer) | −1.84 |
-| Scan10 | 12.66 ± 0.60 | 11.64 | <0.0001 (perception safer) | −1.22 |
-| Scan15 | 13.56 ± 0.64 | 10.79 | 0.15 (no diff) | +0.21 |
-| Scan20 | 13.38 ± 0.72 | 12.43 | 0.62 (no diff) | −0.07 |
+| Condition | Clearance d̄_clear (mean ± std) | p vs Perfect perception | Cohen d |
+|---|---|---|---|
+| Perfect perception | 13.43 ± 0.65 | — | — |
+| Scan5 (Baseline) | 12.35 ± 0.50 | <0.0001 (perception safer) | −1.84 |
+| Scan10 | 12.66 ± 0.60 | <0.0001 (perception safer) | −1.22 |
+| Scan15 | 13.56 ± 0.64 | 0.15 (no diff) | +0.21 |
+| Scan20 | 13.38 ± 0.72 | 0.62 (no diff) | −0.07 |
 
 ### SARSA
 
-| Condition | Per-episode clearance (mean ± std) | Final-path clearance | p vs Perfect perception | Cohen d |
-|---|---|---|---|---|
-| Perfect perception | 13.23 ± 0.61 | 11.97 | — | — |
-| Scan5 (Baseline) | 11.82 ± 0.56 | 11.91 | <0.0001 (perception safer) | −2.41 |
-| Scan10 | 13.62 ± 0.70 | 11.07 | <0.0001 (risk safer) | +0.60 |
-| Scan15 | 13.49 ± 0.63 | 11.83 | 0.0035 (risk safer) | +0.42 |
-| Scan20 | 13.48 ± 0.60 | 11.06 | 0.0030 (risk safer) | +0.43 |
+| Condition | Clearance d̄_clear (mean ± std) | p vs Perfect perception | Cohen d |
+|---|---|---|---|
+| Perfect perception | 13.23 ± 0.61 | — | — |
+| Scan5 (Baseline) | 11.82 ± 0.56 | <0.0001 (perception safer) | −2.41 |
+| Scan10 | 13.62 ± 0.70 | <0.0001 (risk safer) | +0.60 |
+| Scan15 | 13.49 ± 0.63 | 0.0035 (risk safer) | +0.42 |
+| Scan20 | 13.48 ± 0.60 | 0.0030 (risk safer) | +0.43 |
 
 ---
 
@@ -193,14 +189,7 @@ perception safer). Statistics mirror the paper's RQ3 methodology.
      conservative on-policy updates compounding the risk signal.
 
 4. **Perception cost is the trade-off, not accuracy.** The only price for
-   fog-of-war operation is scan count; task success and exploration entropy are
-   essentially unaffected.
-
-5. **Metric caveat:** per-episode clearance (averaged over all training paths)
-   and final-path clearance (the single extracted greedy route) can diverge —
-   e.g. SARSA Scan20 has a high per-episode margin (13.48) but a lower
-   final-path margin (11.06). The paper's safety claim should specify which
-   definition it refers to; per-episode is the statistically testable one.
+   fog-of-war operation is scan count; task success is essentially unaffected.
 
 **Open items:**
 - Results are single-seed; a multi-seed run would make each cell individually

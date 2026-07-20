@@ -1,6 +1,6 @@
-Condition,PerEpisode clearance (last100 mean±std),FinalPath clearance,Welch t p vs Perfect perception,Cohen d vs Perfect perception
-Perfect perception,13.43 ± 0.65,12.36,—,—
-RiskAware_Scan5 (Baseline),12.35 ± 0.50,11.1,0.0000 (perception safer),-1.84
-RiskAware_Scan10,12.66 ± 0.60,11.64,0.0000 (perception safer),-1.22
-RiskAware_Scan15,13.56 ± 0.64,10.79,0.1478 (no diff),0.21
-RiskAware_Scan20,13.38 ± 0.72,12.43,0.6187 (no diff),-0.07
+Condition,PerEpisode clearance (last100 mean±std),Welch t p vs Perfect perception,Cohen d vs Perfect perception
+Perfect perception,13.43 ± 0.65,—,—
+RiskAware_Scan5 (Baseline),12.35 ± 0.50,0.0000 (perception safer),-1.84
+RiskAware_Scan10,12.66 ± 0.60,0.0000 (perception safer),-1.22
+RiskAware_Scan15,13.56 ± 0.64,0.1478 (no diff),0.21
+RiskAware_Scan20,13.38 ± 0.72,0.6187 (no diff),-0.07

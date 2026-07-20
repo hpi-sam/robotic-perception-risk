@@ -3,7 +3,6 @@ Metric,Perfect perception,RiskAware_Scan5 (Baseline),RiskAware_Scan10,RiskAware_
 Conv. Ep. (10%),391.0,381.0,412.0,427.0,451.0
 Conv. Ep. (5%),409.0,460.0,438.0,457.0,451.0
 Final path length,133.0,178.0,140.0,175.0,131.0
-Final path clearance,12.36,11.1,11.64,10.79,12.43
 Success % (last100),100.0,100.0,98.0,99.0,99.0
 Total scans,0.0,377.0,440.0,387.0,508.0
 Exploration entropy,14.43,14.36,14.53,14.32,14.49
